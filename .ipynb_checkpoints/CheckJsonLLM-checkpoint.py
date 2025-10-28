@@ -3,7 +3,7 @@ import json
 from google import genai
 
 # Initialize Gemini
-client = genai.Client(api_key="AIzaSyCoSIzQjBTsRZ4y3GJdCeFPDGsIupLd3Hg")
+client = genai.Client(api_key="")
 
 def main():
     args = sys.argv[1:]
@@ -19,18 +19,7 @@ def main():
     # --- Call Gemini ---
     response = client.models.generate_content(
         model="gemini-2.5-flash",
-        contents=["""Encourage variety by adjusting:
-
-Terrain shape (ramps, pits, stairs)
-
-Task objectives
-
-Material composition (mix of rigid, soft, actuator voxels)
-
-Maintain realism by grounding the design in plausible soft-body mechanics — e.g., robots should crawl, jump, or deform naturally.
-
-Avoid "fantasy" objects or abstract floating mazes that violate 2D voxel physics.""",prompt]
-    )
+        contents=["""You are a json file parser, u check for missing syntax and fill the gaps in any given json file. give no spaces, give in single    line""",prompt,'just give only json format, nothing extra. output:{...,...,...}'])
 
     # --- Print clean Gemini output ---
     print(json.dumps(response.text, ensure_ascii=False))
